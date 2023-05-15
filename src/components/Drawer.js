@@ -8,7 +8,7 @@ function Drawer() {
             </h2>
 
             <div className="cartItems">
-                <div class="cartItem">
+                <div className="cartItem">
                     <div style={{ backgroundImage: "url(/img/sneakers/1.jpg)" }} className="cartItemImg"
                     ></div>
                     <div className="info">
@@ -18,7 +18,7 @@ function Drawer() {
                     <img className="removeBtn" src="/img/btn-remove.svg" alt="Remove" />
                 </div>
 
-                <div class="cartItem">
+                <div className="cartItem">
                     <div style={{ backgroundImage: "url(/img/sneakers/1.jpg)" }} className="cartItemImg"
                     ></div>
                     <div className="info">
@@ -28,7 +28,7 @@ function Drawer() {
                     <img className="removeBtn" src="/img/btn-remove.svg" alt="Remove" />
                 </div>
 
-                <div class="cartItem">
+                <div className="cartItem">
                     <div style={{ backgroundImage: "url(/img/sneakers/1.jpg)" }} className="cartItemImg">
                     </div>
                     <div className="info">
