@@ -1,14 +1,28 @@
-function Drawer() {
+function Drawer({ onClose, items = [] }) {
   return (
-    <div style={{ display: "none" }} className="overlay">
+    <div className="overlay">
         <div className="drawer">
             <h2>
             Корзина
-            <img className="removeBtn" src="/img/btn-remove.svg" alt="Remove" />
+            <img onClick={onClose} className="removeBtn" src="/img/btn-remove.svg" alt="Close" />
             </h2>
 
             <div className="cartItems">
-                <div className="cartItem">
+
+                {items.map((obj) => (
+                    <div className="cartItem">
+                        <div 
+                            style={{ backgroundImage: `url(${obj.imageUrl})` }} className="cartItemImg">
+                        </div>
+                        <div className="info">
+                            <p>{obj.title}</p>
+                            <b>{obj.price} руб.</b>
+                        </div>
+                        <img className="removeBtn" src="/img/btn-remove.svg" alt="Remove" />
+                    </div>
+                ))}
+
+                {/* <div className="cartItem">
                     <div style={{ backgroundImage: "url(/img/sneakers/1.jpg)" }} className="cartItemImg"
                     ></div>
                     <div className="info">
@@ -16,19 +30,9 @@ function Drawer() {
                     <b>12 999 руб.</b>
                     </div>
                     <img className="removeBtn" src="/img/btn-remove.svg" alt="Remove" />
-                </div>
+                </div> */}
 
-                <div className="cartItem">
-                    <div style={{ backgroundImage: "url(/img/sneakers/1.jpg)" }} className="cartItemImg"
-                    ></div>
-                    <div className="info">
-                    <p>Мужские Кроссовки Nike Air Max 270</p>
-                    <b>12 999 руб.</b>
-                    </div>
-                    <img className="removeBtn" src="/img/btn-remove.svg" alt="Remove" />
-                </div>
-
-                <div className="cartItem">
+                {/* <div className="cartItem">
                     <div style={{ backgroundImage: "url(/img/sneakers/1.jpg)" }} className="cartItemImg">
                     </div>
                     <div className="info">
@@ -36,7 +40,7 @@ function Drawer() {
                     <b>12 999 руб.</b>
                     </div>
                     <img className="removeBtn" src="/img/btn-remove.svg" alt="Remove" />
-                </div>
+                </div> */}
             </div>
             
             <div className="cartTotalBlock">
