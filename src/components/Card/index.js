@@ -1,26 +1,34 @@
-import React from "react";
-import styles from "./Card.module.scss";
+import React from 'react';
+import styles from './Card.module.scss';
 // можно вывести styles для проверки в консоль
 // console.log(styles);
 
-function Card({ title, imageUrl, price, onClickFavouriteBtn, onClickPlusBtn }) { /* вместо 'props' можно использовать деструктуризацию, указав необходимые свойства по имени, а не через 'props' */
+function Card({ id, title, imageUrl, price, onFavourite, onPlus, favourited = false }) { /* вместо 'props' можно использовать деструктуризацию, указав необходимые свойства по имени, а не через 'props' */
 	const [isAdded, setIsAdded] = React.useState(false);
+    // Сохранение закладок - нажатие на кнопку 'favourite' (aka 'сердечко')
+    const [isFavourite, setIsFavourite] = React.useState(favourited);
 
-	const handleClick = () => {
-        onClickPlusBtn({title, imageUrl, price});
+	const handleClickPlus = () => {
+        onPlus({title, imageUrl, price});
 		setIsAdded(!isAdded);
 	};
 
+    const handleClickFavourite = () => {
+        onFavourite({id, title, imageUrl, price});
+        // setIsFavourite(true);  // Если мы хотим только включить кнопку/сердечко
+        setIsFavourite(!isFavourite); // Если мы хотим включать и выключать кнопку/сердечко
+    }
+
 	return (
 		<div className={styles.card}>
-			<div className={styles.favourite} onClick={onClickFavouriteBtn}>
-				<img src="/img/heart-unliked.svg" alt="Unliked" />
+			<div className={styles.favourite} onClick={handleClickFavourite}>
+				<img src={isFavourite ? '/img/favourite-liked.svg' : '/img/favourite-unliked.svg'} alt='Unliked' />
 			</div>
 			<img
-				width="133"
-				height="112"
+				width='133'
+				height='112'
 				src={imageUrl}
-				alt="Sneakers" 
+				alt='Sneakers' 
 			/>
 			<h5>{title}</h5>
 			<div className={styles.cardBottom}>
@@ -30,9 +38,9 @@ function Card({ title, imageUrl, price, onClickFavouriteBtn, onClickPlusBtn }) {
 				</div>
 				<img
 					className={styles.plus}
-					onClick={handleClick}
-					src={isAdded ? "/img/btn-checked.svg" : "/img/btn-plus.svg"}
-					alt="Plus"
+					onClick={handleClickPlus}
+					src={isAdded ? '/img/btn-checked.svg' : '/img/btn-plus.svg'}
+					alt='Plus'
 				/>
 			</div>
 		</div>
